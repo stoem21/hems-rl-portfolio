@@ -1,0 +1,42 @@
+name: Deploy Pages (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: hems-frontend/package-lock.json
+      - name: Install frontend dependencies
+        working-directory: hems-frontend
+        run: npm ci
+      - name: Build frontend for Pages
+        working-directory: hems-frontend
+        env:
+          VITE_BACKEND_URL: ${{ vars.VITE_BACKEND_URL }}
+          VITE_SITE_BASE: /${{ github.event.repository.name }}/
+          VITE_PAGES: 'true'
+        run: |
+          test -n "$VITE_BACKEND_URL"
+          npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: hems-backend/dist
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

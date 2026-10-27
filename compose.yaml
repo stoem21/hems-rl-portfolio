@@ -1,0 +1,9 @@
+name: hems-portfolio-preview
+services:
+  dashboard:
+    build:
+      context: .
+      args:
+        VITE_BACKEND_URL: ${VITE_BACKEND_URL:-}
+    ports:
+      - '127.0.0.1:${HEMS_PREVIEW_PORT:-8180}:80'

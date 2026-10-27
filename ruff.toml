@@ -1,0 +1,20 @@
+line-length = 120
+target-version = "py311"
+
+[lint]
+select = ["E", "F", "W"]
+ignore = [
+    "E501",  # line too long — handled by formatter, not linter
+    "E231",  # missing whitespace after comma — inconsistently applied in codebase
+    "E741",  # ambiguous variable name (common in ML: l, n, i)
+    "F401",  # imported but unused — common in __init__ and re-export files
+    "W291",  # trailing whitespace
+    "W293",  # whitespace before colon
+]
+
+exclude = [
+    "hems-backend/.venv",
+    "hems-frontend",
+    "__pycache__",
+    ".git",
+]

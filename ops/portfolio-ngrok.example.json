@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "clinicDemoDir": "/ABSOLUTE/PATH/TO/CLINIC-DEMO-RUNTIME",
+  "hemsProjectDir": "/ABSOLUTE/PATH/TO/HEMS-RUNTIME",
+  "proxyPort": 8787,
+  "clinicPort": 4100,
+  "hemsPort": 8000,
+  "publicUrl": "",
+  "allowedOrigins": [
+    "https://YOUR_USERNAME.github.io"
+  ],
+  "maxHemsJobs": 1,
+  "maxBodyBytes": 1048576,
+  "upstreamTimeoutMs": 600000,
+  "hemsDashboardDataFile": "/ABSOLUTE/PATH/TO/PRIVATE/dashboardData.js"
+}
