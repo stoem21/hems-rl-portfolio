@@ -4,6 +4,16 @@ A code-focused portfolio for battery-dispatch research: a custom reinforcement-l
 
 **Dashboard charts load saved research evaluation results from the backend through the HTTPS tunnel.** Thesis text, checkpoints, household datasets and measured evaluation exports stay on the Mac and are excluded from Git. The frontend contains no bundled research results or sample chart fallback.
 
+## Live demo
+
+[Open the HEMS dashboard and simulation demo](https://stoem21.github.io/hems-rl-portfolio/)
+
+The dashboard retrieves saved evaluation results from the live backend; simulation requests run on the research host. Interactive features require the Mac backend and HTTPS tunnel to be online. No dataset, checkpoint or measured result export is bundled in this repository.
+
+![HEMS simulation configuration before a run](docs/images/hems-simulation.jpg)
+
+*Simulation setup screen before running an agent. Measured evaluation results are not embedded in this preview.*
+
 | Area | Technologies |
 | --- | --- |
 | Dashboard | React 19, Vite, Recharts |
