@@ -32,3 +32,9 @@ my_bib.bib
 Use only local or authorized research inputs. No artifacts, data downloads, original thesis text, bibliography or saved evaluation tables are bundled. Training's `--clusters` argument takes a local JSON mapping of cluster IDs to household IDs; the derived original cluster assignment file is also excluded.
 
 The combined Node proxy also needs `hemsDashboardDataFile` in its local JSON configuration. It reads the saved evaluation export directly on the Mac and serves it through `/hems/dashboard-data`; this is separate from FastAPI's model/dataset configuration. Generated export files and their values stay out of Git.
+
+## Dataset source
+
+The preprocessing pipeline targets **Ausgrid Solar Home Electricity Data**. The original download-page URL, `https://www.ausgrid.com.au/Industry/Our-Research/Data-to-share/Solar-home-electricity-data`, returned HTTP 404 when checked on 28 October 2026. [Ausgrid's current research data catalogue](https://www.ausgrid.com.au/about-us/about-ausgrid/research-data-sets) remains available, but availability of a replacement download for this specific dataset has not been confirmed.
+
+Use an existing authorized local copy, or confirm current access with the publisher. This repository does not mirror the dataset or automatically download a third-party copy. The normalized schema and runtime paths above still apply to the existing research deployment.

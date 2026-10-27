@@ -17,7 +17,7 @@ VITE_BACKEND_URL=https://YOUR-ASSIGNED-DOMAIN.ngrok-free.app/hems VITE_SITE_BASE
 
 The public URL is visible to visitors. Keep provider credentials and the ngrok authtoken solely on the backend host. The combined proxy must permit the website origin, e.g. `https://stoem21.github.io`.
 
-The API helper adds ngrok's interstitial-bypass header for ngrok API bases. Existing AI streaming readers remain in use. Health checks run when the tab is visible at a five-minute interval; they are not proof that data, checkpoints or models are loaded.
+The API helper adds ngrok's interstitial-bypass header for ngrok API bases. Existing AI streaming readers remain in use. Health checks run on entering Simulation or returning to a visible tab after the five-minute cache expires. There is no periodic polling; recent and in-flight checks are shared across component remounts. The Check connection button explicitly retries, and hidden tabs do not initiate health checks. A successful health response does not prove that data, checkpoints or models are loaded.
 
 Before sharing, test health, a short rollout, agent comparison, streamed explanation and AI events against the live backend. Verify actual host resource usage and the ngrok plan's remaining request/data allowance. Verify `/hems/dashboard-data` returns the configured saved evaluation and that the UI shows its export timestamp. Stop the tunnel and reload: results must show an unavailable state instead of replacement values.
 

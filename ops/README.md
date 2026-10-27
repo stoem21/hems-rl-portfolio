@@ -1,6 +1,6 @@
 # One tunnel for two local backends
 
-Copy `portfolio-ngrok.example.json` to `portfolio-ngrok.json` locally, fill the absolute paths to your existing Clinic demo and HEMS backend runtime checkouts, and set the exact GitHub Pages origin.
+Copy `portfolio-ngrok.example.json` to `portfolio-ngrok.json` locally, fill the absolute paths to your existing Clinic demo and HEMS backend runtime checkouts, and set the exact GitHub Pages origin in `allowedOrigins`. Add the exact local frontend origin when using a preview: normally `http://localhost:5173` for Vite or `http://localhost:8180` for the Docker frontend. A different scheme, host or port is a different origin.
 
 The Clinic runtime checkout must provide `compose.yaml` with service `clinic-demo`; the HEMS runtime checkout must provide `docker-compose.yml` with service `api`. This public repository's own Compose file is a frontend preview, not a full inference deployment. The runtime may use private artifacts that are absent from this repository.
 
