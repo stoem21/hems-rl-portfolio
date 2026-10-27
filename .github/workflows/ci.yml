@@ -31,6 +31,6 @@ jobs:
           cache: npm
           cache-dependency-path: hems-frontend/package-lock.json
       - run: npm ci
-      - run: node --test src/lib/simulationStream.test.js src/data/dashboardData.test.js
+      - run: node --test src/lib/simulationStream.test.js src/data/dashboardData.test.js src/hooks/useBackendHealth.test.cjs
       - run: node --test ../ops/tests/dashboard-data.test.cjs
       - run: npm run build

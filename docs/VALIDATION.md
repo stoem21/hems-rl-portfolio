@@ -28,3 +28,12 @@ Updated 27 October 2026: the actual host evaluation export was loaded and all 26
 The initial checks used local file reads and in-memory requests. They did not establish agreement with thesis tables. No original research file or backend image was modified.
 
 A subsequent live check on 27 October 2026 verified public ngrok access to both backends, all 26 evaluation fields identified by the original export hash, Clinic auto-login, allowed-origin CORS/preflight, and rejection of an unapproved origin. A real I-TD3 rollout for household 1 / seed 1 / one day completed successfully. A local Pages-style browser build displayed the actual Overview and Robustness data. The original standalone tunnel was restored after the temporary routing check, and temporary proxy/preview services were stopped. This does not verify every simulation mode, live AI, scientific reproducibility, or a fresh backend image build.
+
+## Health request budget
+
+The simulation health hook makes one check on entry, shares pending/recent checks across component remounts, and has no periodic polling. Returning to a visible tab can refresh a result older than five minutes. Check connection explicitly retries even within that cache period. Hidden tabs do not issue health checks. Deterministic hook tests cover 30 idle minutes, rapid tab switching, remounts, offline retries, and timeouts.
+
+```bash
+cd hems-frontend
+node --test src/hooks/useBackendHealth.test.cjs
+```

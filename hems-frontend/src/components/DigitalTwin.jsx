@@ -18,7 +18,7 @@ import remarkGfm from "remark-gfm";
 import SimulationComparison from "./SimulationComparison";
 import { apiError, readAskEvents, mergeSimulationResults, manualSimulationRequest } from "../lib/simulationStream.js";
 import { apiFetch } from "../config";
-import { useBackendHealth } from "../hooks/useBackendHealth";
+import { useBackendHealth, retryBackendHealth } from "../hooks/useBackendHealth";
 import { useDashboardData } from '../data/DashboardDataContext.jsx';
 
 const flat = (obj) => Object.values(obj).flat();
@@ -389,9 +389,10 @@ export default function DigitalTwin() {
         </h2>
         <div className="card">
           <p>
-            The simulation backend is not reachable. Start it locally, then this
-            page will reconnect automatically.
+            The simulation backend is not reachable. Once the backend and tunnel
+            are running, check the connection again.
           </p>
+          <button className="ghost" onClick={retryBackendHealth}>Check connection</button>
           <div className="code-block">
             <code>{UVICORN_CMD}</code>
             <button
@@ -413,6 +414,7 @@ export default function DigitalTwin() {
         <span className="status-online" style={{ fontSize: "0.85rem" }}>
           ● Backend online
         </span>
+        {" "}<button className="ghost" onClick={retryBackendHealth}>Check connection</button>
       </h2>
       <p className="subtitle">
         Run a live battery-dispatch simulation against a trained agent
