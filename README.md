@@ -78,6 +78,20 @@ flowchart LR
 
 Forecast variants are represented by `I-*`, `N-*`, `V-*` and `R-*` configurations. Displayed rankings and savings come from the configured saved evaluation export. Simulation runs are computed separately by FastAPI; thesis consistency requires comparison with the thesis tables and experiment settings.
 
+## Engineering highlights
+
+- **Battery-dispatch environment:** A custom Gymnasium environment represents household demand, solar generation, battery state and dispatch rewards. Shared training utilities support TD3, SAC and DDPG configurations.
+- **Validated simulation windows:** The FastAPI service checks household and agent selections, calendar dates, continuous half-hour measurements and forecast lookahead before a rollout. Missing intervals and incomplete measurements produce explicit errors.
+- **Streaming results:** The React client handles fragmented UTF-8 server-sent events and preserves completed simulation results when an answer stream is interrupted. Comparison results remain tied to the same household and date window.
+- **Runtime research assets:** The public source contains application and research pipeline code. Datasets, checkpoints, thesis retrieval material and measured evaluation exports remain on the host; the dashboard retrieves results through the API.
+- **Request-conscious delivery:** Connection checks are shared and cached for five minutes, with no periodic health polling. A manual check supports reconnecting when the backend becomes available.
+
+## My contribution
+
+I developed this as a solo research and software project with AI coding assistance. My work covers the battery-dispatch RL environment, training and evaluation pipeline, FastAPI simulation service and React research dashboard.
+
+For this public portfolio, I connected the dashboard to the live backend while keeping datasets, checkpoints, thesis material and measured exports on the research host. AI tools assisted with implementation, debugging, tests and documentation. Software checks are documented in the [validation scope](docs/VALIDATION.md); passing them does not independently reproduce the research results or establish agreement with thesis tables.
+
 ## Validate without research data or model weights
 
 ```bash
@@ -90,7 +104,7 @@ pytest tests -q
 ```bash
 cd hems-frontend
 npm ci
-node --test src/lib/simulationStream.test.js src/data/dashboardData.test.js
+node --test src/lib/simulationStream.test.js src/data/dashboardData.test.js src/hooks/useBackendHealth.test.cjs
 node --test ../ops/tests/dashboard-data.test.cjs
 npm run build
 ```
@@ -101,4 +115,4 @@ See [validation scope](docs/VALIDATION.md). Offline tests exercise application l
 
 Research artifacts are intentionally excluded. `gen_dashboard_data.py` writes regenerated measured outputs under ignored `private-results/`, keeping measured values out of the frontend source bundle. Configure that private export path on the proxy to serve updated results at runtime. Ausgrid preprocessing code is included; dataset distribution is not.
 
-Third-party packages retain their own licenses. No open-source licensing or personal authorship statement is selected automatically; the owner should review those before publication.
+This repository does not include an open-source license for the application. Third-party packages retain their own licenses. The preprocessing pipeline targets the [Ausgrid Solar Home Electricity Data](https://www.ausgrid.com.au/Industry/Our-Research/Data-to-share/Solar-home-electricity-data); users obtain the dataset from its source under the applicable terms.

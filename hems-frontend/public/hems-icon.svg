@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>HEMS battery energy icon</title>
+  <rect width="64" height="64" rx="15" fill="#5b7f2b"/>
+  <rect x="9" y="19" width="43" height="27" rx="5" fill="none" stroke="#fffdf5" stroke-width="4"/>
+  <path d="M54 27h3v11h-3" fill="#fffdf5"/>
+  <path d="M34 16 22 35h10l-3 14 14-21H33z" fill="#ffdc83"/>
+</svg>
